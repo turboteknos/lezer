@@ -55,10 +55,8 @@ namespace lezer
             feladatsorszam(5);
             Hanyloves();
             feladatsorszam(7,$"A legpontosabb lövés:{LegpontosabbLoves()}");
-            //Console.WriteLine(LegpontosabbLoves().Id.ToString(),LegpontosabbLoves().Nev.ToString(),LegpontosabbLoves().X.ToString(),LegpontosabbLoves().Y.ToString(),LegpontosabbLoves().T.ToString());
-            //Console.WriteLine(LegpontosabbLoves().T.ToString());
-            feladatsorszam(10, $"A résztvevő játékosok száma (LINQ):{ResztvevoJatekosokLINQ().ToString()}");
-            feladatsorszam(10, $"A résztvevő játékosok száma (SET):{ResztvevoJatekosokSet().ToString()}");
+            feladatsorszam(10, $"A résztvevő játékosok száma (LINQ):{ResztvevoJatekosokLINQ()}");
+            feladatsorszam(10, $"A résztvevő játékosok száma (SET):{ResztvevoJatekosokSet()}");
             LovesekSzama();
             Console.ReadKey();
         }
@@ -75,9 +73,8 @@ namespace lezer
             var x = (from l in loves
                      orderby l.T
                      select l).First();
-           string adat=x.Id+";"+x.Nev+";"+x.X.ToString()+";"+x.Y.ToString()+";"+x.T.ToString();
-            return adat;
-                  //lov pszam ==0 select lov count
+            string adatf = $"ID: {x.Id}; Név: {x.Nev}; X:{x.X}; Y: {x.Y}; Távolság:{x.T}";
+            return adatf;
         }
 
         private int ResztvevoJatekosokLINQ()
