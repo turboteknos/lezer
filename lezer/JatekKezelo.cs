@@ -10,6 +10,8 @@ namespace lezer
 {
     internal class JatekKezelo
     {
+        public HashSet<string> set;
+
         List<JatekosLovese> loves;
         public static float Ykozep;
         public static float Xkozep;
@@ -17,7 +19,7 @@ namespace lezer
         public JatekKezelo()
         {
             loves = new();
-
+            set = new();
             FeladatFeltolt();
             Feladatok();
         }
@@ -57,7 +59,10 @@ namespace lezer
             feladatsorszam(7,$"A legpontosabb lövés:{LegpontosabbLoves()}");
             feladatsorszam(10, $"A résztvevő játékosok száma (LINQ):{ResztvevoJatekosokLINQ()}");
             feladatsorszam(10, $"A résztvevő játékosok száma (SET):{ResztvevoJatekosokSet()}");
+            feladatsorszam(11);
             LovesekSzama();
+            feladatsorszam(12);
+            AtlagPontszam();
             Console.ReadKey();
         }
 
@@ -90,13 +95,36 @@ namespace lezer
 
         private int ResztvevoJatekosokSet()
         {
-            HashSet<string> set = new HashSet<string>();
             foreach (var l in loves)
             {
                 set.Add(l.Nev);
             }
 
+           
+
             return set.Count();
+        }
+
+        private void AtlagPontszam()
+        {
+            foreach (string s in set)
+            {
+                int db = 0;
+                float ossz = 0;
+                foreach (var l in loves)
+                {
+                    if (l.Nev == s)
+                    {
+                        db++;
+                        ossz += l.Pontszam;
+                    }
+
+
+                }
+                Console.WriteLine($"{s} : {ossz / (float)db}");
+
+
+            }
         }
 
         private void LovesekSzama()

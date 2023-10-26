@@ -17,6 +17,8 @@ namespace lezer
 
         public float T { get { return Tavolsag(); } }
 
+        public float Pontszam { get { return 10 - T; } } 
+
         public JatekosLovese(string nev, float x, float y, int id)
         {
             Nev = nev;
@@ -33,5 +35,7 @@ namespace lezer
             return tavolsag;
 
         }
+
+        
     }
 }
